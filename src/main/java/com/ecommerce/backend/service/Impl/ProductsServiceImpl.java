@@ -1,9 +1,10 @@
-package com.ecommerce.backend.service;
+package com.ecommerce.backend.service.Impl;
 
 import com.ecommerce.backend.dto.ProductsDTO;
 import com.ecommerce.backend.entity.Products;
 import com.ecommerce.backend.mapper.ProductsMapper;
 import com.ecommerce.backend.repository.ProductsRepository;
+import com.ecommerce.backend.service.ProductsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

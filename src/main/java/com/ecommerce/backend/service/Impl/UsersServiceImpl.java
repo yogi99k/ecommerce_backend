@@ -1,9 +1,10 @@
-package com.ecommerce.backend.service;
+package com.ecommerce.backend.service.Impl;
 
 import com.ecommerce.backend.dto.UsersDto;
 import com.ecommerce.backend.entity.Users;
 import com.ecommerce.backend.mapper.UsersMapper;
 import com.ecommerce.backend.repository.UserRepository;
+import com.ecommerce.backend.service.UsersService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
