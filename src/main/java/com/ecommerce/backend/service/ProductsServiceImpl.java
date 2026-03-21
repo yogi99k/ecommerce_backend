@@ -3,7 +3,6 @@ package com.ecommerce.backend.service;
 import com.ecommerce.backend.dto.ProductsDTO;
 import com.ecommerce.backend.entity.Products;
 import com.ecommerce.backend.mapper.ProductsMapper;
-import com.ecommerce.backend.mapper.UsersMapper;
 import com.ecommerce.backend.repository.ProductsRepository;
 import org.springframework.stereotype.Service;
 
