@@ -8,6 +8,7 @@ public class UsersMapper {
     // to the format that we want to return to the client
     public static UsersDto toDto(Users users){
 
+        if (users == null) return null;
         UsersDto usersDto = new UsersDto(
 //                users.getUser_id(),
 //                users.getName(),
@@ -15,6 +16,7 @@ public class UsersMapper {
 //                users.getCity(),
 //                users.getSignup_date()
         );
+
         usersDto.setUser_id(users.getUser_id());
         usersDto.setName(users.getName());
         usersDto.setEmail(users.getEmail());
@@ -28,6 +30,7 @@ public class UsersMapper {
     // i.e. to convert the data from the format that we receive from the client
     public static Users toEntity(UsersDto usersDto){
 
+        if (usersDto == null) return null;
         Users users = new Users();
         users.setUser_id(usersDto.getUser_id());
         users.setName(usersDto.getName());

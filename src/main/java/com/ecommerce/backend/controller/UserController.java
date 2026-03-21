@@ -1,14 +1,13 @@
 package com.ecommerce.backend.controller;
 
+import com.ecommerce.backend.dto.UsersDto;
 import com.ecommerce.backend.entity.Users;
 import com.ecommerce.backend.repository.UserRepository;
+import com.ecommerce.backend.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,23 +15,29 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UsersService usersService;
 
-    UserController (UserRepository userRepository) {
-        this.userRepository = userRepository;
+    UserController (UsersService usersService) {
+        this.usersService = usersService;
     }
 
     @GetMapping
-    public List<Users> getAllUsers(){
-        return userRepository.findAll();
-        // For pagination
-//        Page<Users> all = userRepository.findAll(PageRequest.of(0, 5));
-//        return all.getContent();
+    public List<UsersDto> getAllUsers(){
+        return usersService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public Users getusersById(@PathVariable String id){
-        Users users = userRepository.findById(id).orElse(null);
-        return users;
+    public UsersDto getUserById(@PathVariable String id) {
+        return usersService.getUserById(id);
+    }
+
+    @PostMapping
+    public UsersDto createUser(@RequestBody UsersDto userDTO) {
+        return usersService.createUser(userDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable String id) {
+        usersService.deleteUser(id);
     }
 }
