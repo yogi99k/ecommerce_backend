@@ -40,4 +40,30 @@ public class UserController {
     public void deleteUser(@PathVariable String id) {
         usersService.deleteUser(id);
     }
+
+    @PutMapping("/{id}")
+    public UsersDto updateUser(@PathVariable String id,
+                               @RequestBody UsersDto userDTO) {
+        return usersService.updateUserById(id, userDTO);
+    }
+
+    //If both name and city are given in filter ?
+    //Need to optimize the search
+    @GetMapping("/search")
+    public List<UsersDto> searchByName(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String city) {
+        if (name != null) {
+            return usersService.searchByName(name);
+        } else if (city != null) {
+            return usersService.searchByCity(city);
+        } else {
+            return usersService.getAllUsers();
+        }
+    }
+
+    @GetMapping("/filter")
+    public List<UsersDto> filterByGender(@RequestParam String gender){
+        return usersService.filterByGender(gender);
+    }
 }

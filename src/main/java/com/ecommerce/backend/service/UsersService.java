@@ -17,4 +17,11 @@ public interface UsersService {
 
     void deleteUser(String id);
 
+    UsersDto updateUserById(String id, UsersDto userDTO);
+
+    List<UsersDto> searchByName(String name);
+
+    List<UsersDto> searchByCity(String name);
+
+    List<UsersDto> filterByGender(String gender);
 }
