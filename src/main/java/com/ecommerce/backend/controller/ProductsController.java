@@ -2,9 +2,7 @@ package com.ecommerce.backend.controller;
 
 import com.ecommerce.backend.dto.ProductsDTO;
 import com.ecommerce.backend.service.ProductsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,10 @@ public class ProductsController {
     @GetMapping
     public List<ProductsDTO> getAllProducts(){
         return productsService.getAllProducts();
+    }
+
+    @PostMapping
+    public ProductsDTO createProduct(@RequestBody ProductsDTO productsDTO){
+        return productsService.createProducts(productsDTO);
     }
 }
