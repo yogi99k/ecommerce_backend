@@ -1,0 +1,43 @@
+package com.ecommerce.backend.controller;
+
+import com.ecommerce.backend.dto.UsersDto;
+import com.ecommerce.backend.entity.Users;
+import com.ecommerce.backend.repository.UserRepository;
+import com.ecommerce.backend.service.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    private final UsersService usersService;
+
+    UserController (UsersService usersService) {
+        this.usersService = usersService;
+    }
+
+    @GetMapping
+    public List<UsersDto> getAllUsers(){
+        return usersService.getAllUsers();
+    }
+
+    @GetMapping("/{id}")
+    public UsersDto getUserById(@PathVariable String id) {
+        return usersService.getUserById(id);
+    }
+
+    @PostMapping
+    public UsersDto createUser(@RequestBody UsersDto userDTO) {
+        return usersService.createUser(userDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable String id) {
+        usersService.deleteUser(id);
+    }
+}
