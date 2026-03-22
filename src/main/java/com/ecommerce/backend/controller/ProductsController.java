@@ -25,4 +25,14 @@ public class ProductsController {
     public ProductsDTO createProduct(@RequestBody ProductsDTO productsDTO){
         return productsService.createProducts(productsDTO);
     }
+
+    @GetMapping("/{id}")
+    public ProductsDTO getProductsById(@PathVariable String id){
+        return productsService.getProductsById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable String id){
+        productsService.deleteProduct(id);
+    }
 }
