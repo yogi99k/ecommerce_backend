@@ -16,7 +16,7 @@ public class UsersDto {
     @NotNull(message = "UserId cannot be empty")
     private String user_id;
     @NotNull(message = "Name cannot be empty")
-    @Size(min=5,max = 100,message = "Name must be in 5 to 100 characters")
+    @Size(min=2,max = 100,message = "Name must be in 5 to 100 characters")
     private String name;
     @NotNull(message = "Email cannot be empty")
     @Email(message = "Invalid Email")
