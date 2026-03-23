@@ -4,6 +4,7 @@ import com.ecommerce.backend.dto.UsersDto;
 import com.ecommerce.backend.entity.Users;
 import com.ecommerce.backend.repository.UserRepository;
 import com.ecommerce.backend.service.UsersService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping
-    public UsersDto createUser(@RequestBody UsersDto userDTO) {
+    public UsersDto createUser(@RequestBody @Valid UsersDto userDTO) {
         return usersService.createUser(userDTO);
     }
 
