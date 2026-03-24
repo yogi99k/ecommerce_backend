@@ -5,9 +5,11 @@ import com.ecommerce.backend.entity.Users;
 import com.ecommerce.backend.repository.UserRepository;
 import com.ecommerce.backend.service.UsersService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,7 +66,10 @@ public class UserController {
     }
 
     @GetMapping("/filter")
-    public List<UsersDto> filterByGender(@RequestParam String gender){
+    public List<UsersDto> filterByGender(@RequestParam
+                                             @Validated
+                                             @NotBlank(message="Gender cannot be empty")
+                                             String gender){
         return usersService.filterByGender(gender);
     }
 }
