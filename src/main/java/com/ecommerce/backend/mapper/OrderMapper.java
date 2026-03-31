@@ -9,7 +9,7 @@ public class OrderMapper {
     public static OrderDTO toDTO(Orders order) {
         OrderDTO dto = new OrderDTO();
         dto.setOrderId(order.getOrderId());
-        dto.setUserId(order.getUsers().getUser_id());
+        dto.setUserId(order.getUsers().getUserId());
         dto.setOrderDate(order.getOrderDate());
         dto.setOrderStatus(order.getOrderStatus());
         dto.setTotalAmount(order.getTotalAmount());

@@ -11,4 +11,6 @@ public interface OrderService {
     OrderDTO getOrdersById(String id);
 
     List<OrderDTO> getAllOrders();
+
+    List<OrderDTO> getOrdersByUserId(String userId);
 }

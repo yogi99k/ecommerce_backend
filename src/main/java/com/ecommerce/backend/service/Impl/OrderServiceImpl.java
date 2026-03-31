@@ -36,4 +36,12 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
         return collect;
     }
+
+    @Override
+    public List<OrderDTO> getOrdersByUserId(String userId) {
+        return orderRepository.findByUsersUserId(userId)
+                .stream()
+                .map(OrderMapper::toDTO)
+                .toList();
+    }
 }

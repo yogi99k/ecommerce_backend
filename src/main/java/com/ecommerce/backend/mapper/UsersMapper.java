@@ -17,7 +17,7 @@ public class UsersMapper {
 //                users.getSignup_date()
         );
 
-        usersDto.setUser_id(users.getUser_id());
+        usersDto.setUserId(users.getUserId());
         usersDto.setName(users.getName());
         usersDto.setEmail(users.getEmail());
         usersDto.setCity(users.getCity());
@@ -32,7 +32,7 @@ public class UsersMapper {
 
         if (usersDto == null) return null;
         Users users = new Users();
-        users.setUser_id(usersDto.getUser_id());
+        users.setUserId(usersDto.getUserId());
         users.setName(usersDto.getName());
         users.setEmail(usersDto.getEmail());
         users.setCity(usersDto.getCity());
