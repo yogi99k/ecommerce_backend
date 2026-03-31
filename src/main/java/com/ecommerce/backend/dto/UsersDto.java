@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @ToString
 public class UsersDto {
     @NotNull(message = "UserId cannot be empty")
-    private String user_id;
+    private String userId;
     @NotNull(message = "Name cannot be empty")
     @Size(min=2,max = 100,message = "Name must be in 5 to 100 characters")
     private String name;
@@ -25,13 +25,5 @@ public class UsersDto {
     private String city;
     @NotNull(message = "Signup cannot be empty")
     private LocalDate signup_date;
-
-//    public UsersDto(String user_id, String name, String email, String city, LocalDate signup_date) {
-//        this.user_id = user_id;
-//        this.name = name;
-//        this.email = email;
-//        this.city = city;
-//        this.signup_date = signup_date;
-//    }
 
 }
