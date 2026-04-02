@@ -16,7 +16,7 @@ public class ProductsController {
         this.productsService=productsService;
     }
 
-    @GetMapping
+    @GetMapping(path="/public")
     public List<ProductsDTO> getAllProducts(){
         return productsService.getAllProducts();
     }
