@@ -3,6 +3,7 @@ package com.ecommerce.backend.controller;
 import com.ecommerce.backend.dto.OrderDTO;
 import com.ecommerce.backend.dto.ProductsDTO;
 import com.ecommerce.backend.service.OrderService;
+import org.springdoc.core.converters.models.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -39,9 +40,15 @@ public class OrderController {
         return orderService.filterByStatus(status);
     }
 
-    @GetMapping("filter/daterange")
+    @GetMapping("/filter/daterange")
     public List<OrderDTO> filterByDateRange(@RequestParam LocalDate startDate,
                                             @RequestParam LocalDate endDate){
         return orderService.filterByDateRange(startDate,endDate);
+    }
+
+    @GetMapping("/filter/amount")
+    public List<OrderDTO> filterByAmount(@RequestParam float amount,
+                                         @RequestParam(defaultValue = "asc") String sortDir){
+        return orderService.filterByAmount(amount,sortDir);
     }
 }

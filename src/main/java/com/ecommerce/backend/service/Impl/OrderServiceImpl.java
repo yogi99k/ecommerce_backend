@@ -1,14 +1,11 @@
 package com.ecommerce.backend.service.Impl;
 
 import com.ecommerce.backend.dto.OrderDTO;
-import com.ecommerce.backend.dto.ProductsDTO;
 import com.ecommerce.backend.entity.Orders;
-import com.ecommerce.backend.entity.Products;
 import com.ecommerce.backend.mapper.OrderMapper;
-import com.ecommerce.backend.mapper.ProductsMapper;
 import com.ecommerce.backend.repository.OrderRepository;
 import com.ecommerce.backend.service.OrderService;
-import org.hibernate.query.Order;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -61,6 +58,17 @@ public class OrderServiceImpl implements OrderService {
         LocalDateTime startDateTime  = startDate.atStartOfDay();
         LocalDateTime endDateTime = endDate.plusDays(1).atStartOfDay();
         return orderRepository.filterByDateRange(startDateTime,endDateTime)
+                .stream()
+                .map(OrderMapper::toDTO)
+                .toList();
+    }
+
+    @Override
+    public List<OrderDTO> filterByAmount(float amount, String sortDir) {
+        Sort orders = sortDir.equalsIgnoreCase("desc")
+                ? Sort.by("totalAmount").descending()
+                : Sort.by("totalAmount").ascending();
+        return orderRepository.findByTotalAmountGreaterThan(amount,orders)
                 .stream()
                 .map(OrderMapper::toDTO)
                 .toList();
