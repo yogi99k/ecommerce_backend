@@ -5,6 +5,8 @@ import com.ecommerce.backend.dto.ProductsDTO;
 import com.ecommerce.backend.service.OrderService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -35,5 +37,11 @@ public class OrderController {
     @GetMapping("/filter/status")
     public List<OrderDTO> filterByStatus(@RequestParam String status){
         return orderService.filterByStatus(status);
+    }
+
+    @GetMapping("filter/daterange")
+    public List<OrderDTO> filterByDateRange(@RequestParam LocalDate startDate,
+                                            @RequestParam LocalDate endDate){
+        return orderService.filterByDateRange(startDate,endDate);
     }
 }

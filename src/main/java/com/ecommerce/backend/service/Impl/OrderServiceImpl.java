@@ -11,6 +11,8 @@ import com.ecommerce.backend.service.OrderService;
 import org.hibernate.query.Order;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +51,16 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDTO> filterByStatus(String status){
         //order status : 'shipped', 'returned', 'cancelled', 'processing', 'completed'
         return orderRepository.filterByOrderStatus(status)
+                .stream()
+                .map(OrderMapper::toDTO)
+                .toList();
+    }
+
+    @Override
+    public List<OrderDTO> filterByDateRange(LocalDate startDate, LocalDate endDate) {
+        LocalDateTime startDateTime  = startDate.atStartOfDay();
+        LocalDateTime endDateTime = endDate.plusDays(1).atStartOfDay();
+        return orderRepository.filterByDateRange(startDateTime,endDateTime)
                 .stream()
                 .map(OrderMapper::toDTO)
                 .toList();
