@@ -3,10 +3,7 @@ package com.ecommerce.backend.controller;
 import com.ecommerce.backend.dto.OrderDTO;
 import com.ecommerce.backend.dto.ProductsDTO;
 import com.ecommerce.backend.service.OrderService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,4 +31,9 @@ public class OrderController {
         return orderService.getOrdersByUserId(userId);
     }
 
+    //Get Orders by Status
+    @GetMapping("/filter/status")
+    public List<OrderDTO> filterByStatus(@RequestParam String status){
+        return orderService.filterByStatus(status);
+    }
 }

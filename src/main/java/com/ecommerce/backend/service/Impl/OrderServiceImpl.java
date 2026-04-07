@@ -44,4 +44,13 @@ public class OrderServiceImpl implements OrderService {
                 .map(OrderMapper::toDTO)
                 .toList();
     }
+
+    @Override
+    public List<OrderDTO> filterByStatus(String status){
+        //order status : 'shipped', 'returned', 'cancelled', 'processing', 'completed'
+        return orderRepository.filterByOrderStatus(status)
+                .stream()
+                .map(OrderMapper::toDTO)
+                .toList();
+    }
 }
