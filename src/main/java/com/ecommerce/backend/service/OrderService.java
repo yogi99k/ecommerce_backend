@@ -21,4 +21,6 @@ public interface OrderService {
     List<OrderDTO> filterByAmount(float amount, String sortDir);
 
     List<OrderDTO> getOrdersByUserIdAndStatus(String userId, String status);
+
+    List<OrderDTO> findByUsers_UserIdAndOrderDateBetween(String userId, LocalDate startDate, LocalDate endDate);
 }

@@ -91,4 +91,15 @@ public class OrderServiceImpl implements OrderService {
                     .toList();
         }
     }
+
+    @Override
+    public List<OrderDTO> findByUsers_UserIdAndOrderDateBetween(String userId, LocalDate startDate, LocalDate endDate) {
+        LocalDateTime startDateTime = startDate.atStartOfDay();
+        LocalDateTime endDateTime = endDate.plusDays(1).atStartOfDay();
+        return orderRepository.findByUsers_UserIdAndOrderDateBetween(userId,startDateTime,endDateTime)
+                .stream()
+                .map(OrderMapper::toDTO)
+                .toList();
+
+    }
 }

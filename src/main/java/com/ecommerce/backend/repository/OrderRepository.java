@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -27,4 +28,6 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
     List<Orders> findByTotalAmountGreaterThan(float amount, Sort sort);
 
     List<Orders> findByUsers_UserIdAndOrderStatus(String userId, String status);
+
+    List<Orders> findByUsers_UserIdAndOrderDateBetween(String userId, LocalDateTime startDate, LocalDateTime endDate);
 }

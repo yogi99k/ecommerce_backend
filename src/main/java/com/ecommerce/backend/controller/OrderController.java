@@ -2,6 +2,7 @@ package com.ecommerce.backend.controller;
 
 import com.ecommerce.backend.dto.OrderDTO;
 import com.ecommerce.backend.dto.ProductsDTO;
+import com.ecommerce.backend.dto.UsersDto;
 import com.ecommerce.backend.service.OrderService;
 import org.springdoc.core.converters.models.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -62,5 +63,13 @@ public class OrderController {
     public List<OrderDTO> filterByUserIdAndStatus(@PathVariable String userId,
                                                   @RequestParam(required = false) String status){
         return orderService.getOrdersByUserIdAndStatus(userId,status);
+    }
+
+    //Get orders by userId + date range
+    @GetMapping("/filter/OrdersByUserId&DateRange/{userId}")
+    public List<OrderDTO> getOrdersByUserIdAndDateRange(@PathVariable String userId,
+                                                        @RequestParam LocalDate startDate,
+                                                        @RequestParam LocalDate endDate){
+        return orderService.findByUsers_UserIdAndOrderDateBetween(userId,startDate,endDate);
     }
 }
