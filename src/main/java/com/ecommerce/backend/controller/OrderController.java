@@ -75,7 +75,7 @@ public class OrderController {
 
     //Get users who have more than X orders
     @GetMapping("/filter/byXOrders/{value}")
-    public List<UsersDto> getUsersByXOrders(@PathVariable long value){
+    public List<String> getUsersByXOrders(@PathVariable long value){
         return orderService.getUsersByXOrders(value);
     }
 }

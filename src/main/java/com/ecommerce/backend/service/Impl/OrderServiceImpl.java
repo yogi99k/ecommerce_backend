@@ -106,10 +106,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<UsersDto> getUsersByXOrders(long value) {
+    public List<String> getUsersByXOrders(long value) {
         return orderRepository.findUsersWithMoreThanXOrders(value)
                 .stream()
-                .map(UsersMapper::toDto)
+                //.map(UsersMapper::toDto)
                 .toList();
     }
 }

@@ -32,12 +32,20 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
 
     List<Orders> findByUsers_UserIdAndOrderDateBetween(String userId, LocalDateTime startDate, LocalDateTime endDate);
 
+//    @Query("""
+//    SELECT u.user_id
+//    FROM Users u
+//    JOIN Orders o ON u.userId = o.users.userId
+//    GROUP BY u
+//    HAVING COUNT(o.orderId) > :count
+//""")
+
+    //only userid's
     @Query("""
-    SELECT u
-    FROM Users u
-    JOIN Orders o ON u.userId = o.users.userId
-    GROUP BY u
+    SELECT o.users.userId
+    FROM Orders o
+    GROUP BY o.users.userId
     HAVING COUNT(o.orderId) > :count
-""")
-    List<Users> findUsersWithMoreThanXOrders(@Param("count") long count);
+    """)
+    List<String> findUsersWithMoreThanXOrders(@Param("count") long count);
 }
