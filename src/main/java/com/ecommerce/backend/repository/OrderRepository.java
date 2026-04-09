@@ -7,10 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Orders,String> {
-    List<Orders> findByUsersUserId(String userId);
+    List<Orders> findByUsers_UserId (String userId);
 
     @Query("SELECT o FROM Orders o WHERE o.orderStatus = :orderStatus")
     List<Orders> filterByOrderStatus(@Param("orderStatus") String orderStatus);
@@ -25,4 +26,5 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
 
     List<Orders> findByTotalAmountGreaterThan(float amount, Sort sort);
 
+    List<Orders> findByUsers_UserIdAndOrderStatus(String userId, String status);
 }

@@ -51,4 +51,16 @@ public class OrderController {
                                          @RequestParam(defaultValue = "asc") String sortDir){
         return orderService.filterByAmount(amount,sortDir);
     }
+
+    //Get orders by userId + status
+    /**
+     * so the user will enter userid and status ?
+     * Use @PathVariable → when it identifies a resource (mandatory, part of URL structure)
+     * Use @RequestParam → when it filters/searches (optional or flexible inputs)
+     */
+    @GetMapping("/filter/byUserId&Status/{userId}")
+    public List<OrderDTO> filterByUserIdAndStatus(@PathVariable String userId,
+                                                  @RequestParam(required = false) String status){
+        return orderService.getOrdersByUserIdAndStatus(userId,status);
+    }
 }

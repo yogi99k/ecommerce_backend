@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDTO> getOrdersByUserId(String userId) {
-        return orderRepository.findByUsersUserId(userId)
+        return orderRepository.findByUsers_UserId (userId)
                 .stream()
                 .map(OrderMapper::toDTO)
                 .toList();
@@ -65,12 +65,30 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDTO> filterByAmount(float amount, String sortDir) {
-        Sort orders = sortDir.equalsIgnoreCase("desc")
+        Sort sorts = sortDir.equalsIgnoreCase("desc")
                 ? Sort.by("totalAmount").descending()
                 : Sort.by("totalAmount").ascending();
-        return orderRepository.findByTotalAmountGreaterThan(amount,orders)
+        return orderRepository.findByTotalAmountGreaterThan(amount,sorts)
                 .stream()
                 .map(OrderMapper::toDTO)
                 .toList();
+    }
+
+    @Override
+    public List<OrderDTO> getOrdersByUserIdAndStatus(String userId, String status) {
+        if(status==null){
+//            return orderRepository.filterByOrderStatus(userId)
+//                    .stream()
+//                    .map(OrderMapper::toDTO)
+//                    .toList();
+            return getOrdersByUserId(userId);
+        }
+        else
+        {
+            return orderRepository.findByUsers_UserIdAndOrderStatus(userId,status)
+                    .stream()
+                    .map(OrderMapper::toDTO)
+                    .toList();
+        }
     }
 }

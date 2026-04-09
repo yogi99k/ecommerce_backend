@@ -19,4 +19,6 @@ public interface OrderService {
     List<OrderDTO> filterByDateRange(LocalDate startDate, LocalDate endDate);
 
     List<OrderDTO> filterByAmount(float amount, String sortDir);
+
+    List<OrderDTO> getOrdersByUserIdAndStatus(String userId, String status);
 }
