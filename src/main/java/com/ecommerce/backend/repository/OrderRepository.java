@@ -45,7 +45,7 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
     SELECT o.users.userId
     FROM Orders o
     GROUP BY o.users.userId
-    HAVING COUNT(o.orderId) > :count
+    HAVING COUNT(o.orderId) = :count
     """)
     List<String> findUsersWithMoreThanXOrders(@Param("count") long count);
 }
