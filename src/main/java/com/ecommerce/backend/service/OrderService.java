@@ -1,6 +1,7 @@
 package com.ecommerce.backend.service;
 
 import com.ecommerce.backend.dto.OrderDTO;
+import com.ecommerce.backend.dto.UsersDto;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,4 +24,6 @@ public interface OrderService {
     List<OrderDTO> getOrdersByUserIdAndStatus(String userId, String status);
 
     List<OrderDTO> findByUsers_UserIdAndOrderDateBetween(String userId, LocalDate startDate, LocalDate endDate);
+
+    List<UsersDto> getUsersByXOrders(long value);
 }

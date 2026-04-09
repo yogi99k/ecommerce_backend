@@ -72,4 +72,10 @@ public class OrderController {
                                                         @RequestParam LocalDate endDate){
         return orderService.findByUsers_UserIdAndOrderDateBetween(userId,startDate,endDate);
     }
+
+    //Get users who have more than X orders
+    @GetMapping("/filter/byXOrders/{value}")
+    public List<UsersDto> getUsersByXOrders(@PathVariable long value){
+        return orderService.getUsersByXOrders(value);
+    }
 }

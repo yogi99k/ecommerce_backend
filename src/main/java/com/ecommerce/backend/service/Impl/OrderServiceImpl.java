@@ -1,8 +1,10 @@
 package com.ecommerce.backend.service.Impl;
 
 import com.ecommerce.backend.dto.OrderDTO;
+import com.ecommerce.backend.dto.UsersDto;
 import com.ecommerce.backend.entity.Orders;
 import com.ecommerce.backend.mapper.OrderMapper;
+import com.ecommerce.backend.mapper.UsersMapper;
 import com.ecommerce.backend.repository.OrderRepository;
 import com.ecommerce.backend.service.OrderService;
 import org.springframework.data.domain.Sort;
@@ -101,5 +103,13 @@ public class OrderServiceImpl implements OrderService {
                 .map(OrderMapper::toDTO)
                 .toList();
 
+    }
+
+    @Override
+    public List<UsersDto> getUsersByXOrders(long value) {
+        return orderRepository.findUsersWithMoreThanXOrders(value)
+                .stream()
+                .map(UsersMapper::toDto)
+                .toList();
     }
 }
