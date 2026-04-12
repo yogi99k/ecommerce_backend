@@ -78,4 +78,10 @@ public class OrderController {
     public List<String> getUsersByXOrders(@PathVariable long value){
         return orderService.getUsersByXOrders(value);
     }
+
+    //Get total order amount by userId
+    @GetMapping("/total/orderAmount/{userId}")
+    public Double getOrderAmountByUserId(@PathVariable(required = true) String userId){
+        return orderService.getTotalOrderAmountbyUserId(userId);
+    }
 }

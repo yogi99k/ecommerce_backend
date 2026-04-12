@@ -26,4 +26,6 @@ public interface OrderService {
     List<OrderDTO> findByUsers_UserIdAndOrderDateBetween(String userId, LocalDate startDate, LocalDate endDate);
 
     List<String> getUsersByXOrders(long value);
+
+    Double getTotalOrderAmountbyUserId(String userId);
 }

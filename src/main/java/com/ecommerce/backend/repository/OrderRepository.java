@@ -48,4 +48,7 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
     HAVING COUNT(o.orderId) = :count
     """)
     List<String> findUsersWithMoreThanXOrders(@Param("count") long count);
+
+    @Query("select sum(o.totalAmount) from Orders o where o.users.userId = :userId")
+    Double getTotalOrderAmountbyUserId(@Param("userId") String userId);
 }

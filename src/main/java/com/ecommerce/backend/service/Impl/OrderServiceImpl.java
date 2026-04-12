@@ -112,4 +112,12 @@ public class OrderServiceImpl implements OrderService {
                 //.map(UsersMapper::toDto)
                 .toList();
     }
+
+    @Override
+    public Double getTotalOrderAmountbyUserId(String userId) {
+        return orderRepository.getTotalOrderAmountbyUserId(userId);
+//                .stream()
+//                .map(OrderMapper::toDTO)
+//                .toList();
+    }
 }
