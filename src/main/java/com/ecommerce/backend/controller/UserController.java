@@ -72,4 +72,10 @@ public class UserController {
                                              String gender){
         return usersService.filterByGender(gender);
     }
+
+    @GetMapping("/filter/city")
+    public List<UsersDto> filterByCity(@RequestParam String city){
+        return usersService.filterByCity(city);
+    }
+
 }

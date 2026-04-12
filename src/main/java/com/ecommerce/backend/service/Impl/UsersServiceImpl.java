@@ -88,4 +88,12 @@ public class UsersServiceImpl implements UsersService {
                 .map(UsersMapper::toDto)
                 .toList();
     }
+
+    @Override
+    public List<UsersDto> filterByCity(String city){
+        return userRepository.findByCity(city)
+                .stream()
+                .map(UsersMapper::toDto)
+                .toList();
+    }
 }
