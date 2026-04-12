@@ -11,8 +11,8 @@ public class TopUserTotalDTO {
     private String userId;
     private Double totalAmount;
 
-    public TopUserTotalDTO(String userId, Number totalAmount) {
+    public TopUserTotalDTO(String userId, Double totalAmount) {
         this.userId = userId;
-        this.totalAmount = totalAmount.doubleValue();
+        this.totalAmount = totalAmount;
     }
 }

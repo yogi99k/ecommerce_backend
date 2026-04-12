@@ -119,11 +119,7 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.getTotalOrderAmountbyUserId(userId);
     }
 
-//    @Override
-//    public List<TopUserTotalDTO> getTop5UsersByTotalAmount() {
-//        Pageable pageable = PageRequest.of(0, 5);
-//        return orderRepository.getTopUsersByTotalAmount(pageable);
-//    }
+
     @Override
     public List<TopUserTotalDTO> getTop5UsersByTotalAmount(int limit) {
         Pageable pageable = PageRequest.of(0, limit);
@@ -132,7 +128,7 @@ public class OrderServiceImpl implements OrderService {
                 .stream()
                 .map(row -> new TopUserTotalDTO(
                         (String) row[0],
-                        (Number) row[1]
+                        (Double) row[1]
                 ))
                 .toList();
     }
