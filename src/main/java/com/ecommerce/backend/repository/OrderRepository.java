@@ -1,7 +1,11 @@
 package com.ecommerce.backend.repository;
 
+import com.ecommerce.backend.dto.TopUserTotalDTO;
 import com.ecommerce.backend.entity.Orders;
 import com.ecommerce.backend.entity.Users;
+import org.apache.logging.log4j.simple.internal.SimpleProvider;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -51,4 +55,15 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
 
     @Query("select sum(o.totalAmount) from Orders o where o.users.userId = :userId")
     Double getTotalOrderAmountbyUserId(@Param("userId") String userId);
+
+    @Query("""
+    SELECT
+        o.users.userId,
+        SUM(o.totalAmount)
+    FROM Orders o
+    GROUP BY o.users.userId
+    ORDER BY SUM(o.totalAmount) DESC
+""")
+    List<Object[]> getTopUsersByTotalAmount(Pageable pageable);
+
 }

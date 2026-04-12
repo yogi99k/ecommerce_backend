@@ -2,6 +2,7 @@ package com.ecommerce.backend.controller;
 
 import com.ecommerce.backend.dto.OrderDTO;
 import com.ecommerce.backend.dto.ProductsDTO;
+import com.ecommerce.backend.dto.TopUserTotalDTO;
 import com.ecommerce.backend.dto.UsersDto;
 import com.ecommerce.backend.service.OrderService;
 import org.springdoc.core.converters.models.Sort;
@@ -83,5 +84,11 @@ public class OrderController {
     @GetMapping("/total/orderAmount/{userId}")
     public Double getOrderAmountByUserId(@PathVariable(required = true) String userId){
         return orderService.getTotalOrderAmountbyUserId(userId);
+    }
+
+    //Get top 5 users by total order amount
+    @GetMapping("/total/Top5UsersByTotalAmount")
+    public List<TopUserTotalDTO> getTop5UsersByTotalAmount(@RequestParam(required = false) int limit){
+        return orderService.getTop5UsersByTotalAmount(limit);
     }
 }

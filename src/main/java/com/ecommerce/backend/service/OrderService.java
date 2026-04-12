@@ -1,7 +1,9 @@
 package com.ecommerce.backend.service;
 
 import com.ecommerce.backend.dto.OrderDTO;
+import com.ecommerce.backend.dto.TopUserTotalDTO;
 import com.ecommerce.backend.dto.UsersDto;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -28,4 +30,8 @@ public interface OrderService {
     List<String> getUsersByXOrders(long value);
 
     Double getTotalOrderAmountbyUserId(String userId);
+
+    //List<String> getTop5UsersByTotalAmount(Pageable pageable);
+
+    List<TopUserTotalDTO> getTop5UsersByTotalAmount(int limit);
 }

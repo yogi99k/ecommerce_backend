@@ -1,12 +1,13 @@
 package com.ecommerce.backend.service.Impl;
 
 import com.ecommerce.backend.dto.OrderDTO;
-import com.ecommerce.backend.dto.UsersDto;
+import com.ecommerce.backend.dto.TopUserTotalDTO;
 import com.ecommerce.backend.entity.Orders;
 import com.ecommerce.backend.mapper.OrderMapper;
-import com.ecommerce.backend.mapper.UsersMapper;
 import com.ecommerce.backend.repository.OrderRepository;
 import com.ecommerce.backend.service.OrderService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -116,8 +117,23 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Double getTotalOrderAmountbyUserId(String userId) {
         return orderRepository.getTotalOrderAmountbyUserId(userId);
-//                .stream()
-//                .map(OrderMapper::toDTO)
-//                .toList();
+    }
+
+//    @Override
+//    public List<TopUserTotalDTO> getTop5UsersByTotalAmount() {
+//        Pageable pageable = PageRequest.of(0, 5);
+//        return orderRepository.getTopUsersByTotalAmount(pageable);
+//    }
+    @Override
+    public List<TopUserTotalDTO> getTop5UsersByTotalAmount(int limit) {
+        Pageable pageable = PageRequest.of(0, limit);
+
+        return orderRepository.getTopUsersByTotalAmount(pageable)
+                .stream()
+                .map(row -> new TopUserTotalDTO(
+                        (String) row[0],
+                        (Number) row[1]
+                ))
+                .toList();
     }
 }
