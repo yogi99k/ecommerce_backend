@@ -1,6 +1,7 @@
 package com.ecommerce.backend.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -11,17 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/logging")
+@Slf4j
 public class LoggingController {
 
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(LoggingController.class);
+    //public static final Logger LOGGER = LoggerFactory.getLogger(LoggingController.class);
     @GetMapping("/v1")
     public ResponseEntity<String> testLogging(){
-        LOGGER.trace("🔍 TRACE: This is a very detailed trace log. Used for tracking execution flow.");
-        LOGGER.debug("🐞 DEBUG: This is a debug message. Used for debugging.");
-        LOGGER.info("ℹ️ INFO: This is an informational message. Application events.");
-        LOGGER.warn("⚠️ WARN: This is a warning! Something might go wrong.");
-        LOGGER.error("🚨 ERROR: An error occurred! This needs immediate attention.");
+        log.trace("🔍 TRACE: This is a very detailed trace log. Used for tracking execution flow.");
+        log.debug("🐞 DEBUG: This is a debug message. Used for debugging.");
+        log.info("ℹ️ INFO: This is an informational message. Application events.");
+        log.warn("⚠️ WARN: This is a warning! Something might go wrong.");
+        log.error("🚨 ERROR: An error occurred! This needs immediate attention.");
         return ResponseEntity.status(HttpStatus.OK)
                 .body("Logging Successful");
     }
