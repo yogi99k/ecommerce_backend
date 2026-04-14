@@ -91,4 +91,8 @@ public class OrderController {
     public List<TopUserTotalDTO> getTop5UsersByTotalAmount(@RequestParam(required = false) int limit){
         return orderService.getTop5UsersByTotalAmount(limit);
     }
+
+    //Assignment-2
+    //1. Get Orders by Status
+
 }
