@@ -132,4 +132,12 @@ public class OrderServiceImpl implements OrderService {
                 ))
                 .toList();
     }
+
+    @Override
+    public List<OrderDTO> filterByStatusNamedQuery(String status) {
+        return orderRepository.filterByStatusNamedQuery(status)
+                .stream()
+                .map(OrderMapper::toDTO)
+                .toList();
+    }
 }

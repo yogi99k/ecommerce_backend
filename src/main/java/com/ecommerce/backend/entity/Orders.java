@@ -8,6 +8,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="orders")
+@NamedQuery(
+        name = "find_orders_by_status",
+        query = "SELECT o FROM Orders o WHERE o.orderStatus = :orderStatus"
+)
 @Getter @Setter
 public class Orders {
 

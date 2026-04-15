@@ -34,4 +34,6 @@ public interface OrderService {
     //List<String> getTop5UsersByTotalAmount(Pageable pageable);
 
     List<TopUserTotalDTO> getTop5UsersByTotalAmount(int limit);
+
+    List<OrderDTO> filterByStatusNamedQuery(String status);
 }

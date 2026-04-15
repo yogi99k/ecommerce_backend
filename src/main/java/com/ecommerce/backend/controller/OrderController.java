@@ -93,6 +93,9 @@ public class OrderController {
     }
 
     //Assignment-2
-    //1. Get Orders by Status
-
+    //1. Get Orders by Status - Using NamedQuery
+    @GetMapping("/usingNamedQuery/filter/status")
+    public List<OrderDTO> filterByStatusNamedQuery(@RequestParam String status){
+        return orderService.filterByStatusNamedQuery(status);
+    }
 }

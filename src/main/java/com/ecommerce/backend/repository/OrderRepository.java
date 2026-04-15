@@ -1,5 +1,6 @@
 package com.ecommerce.backend.repository;
 
+import com.ecommerce.backend.dto.OrderDTO;
 import com.ecommerce.backend.dto.TopUserTotalDTO;
 import com.ecommerce.backend.entity.Orders;
 import com.ecommerce.backend.entity.Users;
@@ -66,4 +67,7 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
 """)
     List<Object[]> getTopUsersByTotalAmount(Pageable pageable);
 
+
+    @Query(name="find_orders_by_status")
+    List<Orders> filterByStatusNamedQuery(@Param("orderStatus") String status);
 }
