@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -73,4 +74,8 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
 
     @Query(name="Orders.CountOrdersPer_User")
     List<Object[]> getCountOrdersPerUser();
+
+    @Query(value = "select order_status, count(order_id) as count from orders group by order_status order by count desc",nativeQuery = true)
+    List<Object[]> getCountOrdersPerStatus();
+
 }

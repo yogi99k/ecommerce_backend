@@ -1,6 +1,7 @@
 package com.ecommerce.backend.service.Impl;
 
 import com.ecommerce.backend.dto.OrderDTO;
+import com.ecommerce.backend.dto.OrdersPerStatusDTO;
 import com.ecommerce.backend.dto.OrdersPerUserDTO;
 import com.ecommerce.backend.dto.TopUserTotalDTO;
 import com.ecommerce.backend.entity.Orders;
@@ -147,6 +148,17 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.getCountOrdersPerUser()
                 .stream()
                 .map(row-> new OrdersPerUserDTO(
+                        (String) row[0],
+                        (Long) row[1]
+                ))
+                .toList();
+    }
+
+    @Override
+    public List<OrdersPerStatusDTO> getCountOrdersPerStatus() {
+        return orderRepository.getCountOrdersPerStatus()
+                .stream()
+                .map(row -> new OrdersPerStatusDTO(
                         (String) row[0],
                         (Long) row[1]
                 ))

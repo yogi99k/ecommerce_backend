@@ -101,4 +101,11 @@ public class OrderController {
     public List<OrdersPerUserDTO> getCountOrdersPerUser(){
         return orderService.getCountOrdersPerUser();
     }
+
+    //Part-2 : NativeQuery
+    //Orders Count per Status
+    @GetMapping("/usingNativeQuery/countOrdersPerStatus")
+    public List<OrdersPerStatusDTO> getCountOrdersPerStatus(){
+        return orderService.getCountOrdersPerStatus();
+    }
 }

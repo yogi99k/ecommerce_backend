@@ -1,9 +1,6 @@
 package com.ecommerce.backend.service;
 
-import com.ecommerce.backend.dto.OrderDTO;
-import com.ecommerce.backend.dto.OrdersPerUserDTO;
-import com.ecommerce.backend.dto.TopUserTotalDTO;
-import com.ecommerce.backend.dto.UsersDto;
+import com.ecommerce.backend.dto.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -39,4 +36,6 @@ public interface OrderService {
     List<OrderDTO> filterByStatusNamedQuery(String status);
 
     List<OrdersPerUserDTO> getCountOrdersPerUser();
+
+    List<OrdersPerStatusDTO> getCountOrdersPerStatus();
 }
