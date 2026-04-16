@@ -12,6 +12,10 @@ import java.time.LocalDateTime;
         name = "find_orders_by_status",
         query = "SELECT o FROM Orders o WHERE o.orderStatus = :orderStatus"
 )
+@NamedQuery(
+        name="Orders.CountOrdersPer_User",
+        query="select o.users.userId, count(o.orderId) as num_of_orders from Orders o group by o.users.userId order by num_of_orders desc"
+)
 @Getter @Setter
 public class Orders {
 

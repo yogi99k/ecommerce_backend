@@ -1,6 +1,7 @@
 package com.ecommerce.backend.service;
 
 import com.ecommerce.backend.dto.OrderDTO;
+import com.ecommerce.backend.dto.OrdersPerUserDTO;
 import com.ecommerce.backend.dto.TopUserTotalDTO;
 import com.ecommerce.backend.dto.UsersDto;
 import org.springframework.data.domain.Pageable;
@@ -36,4 +37,6 @@ public interface OrderService {
     List<TopUserTotalDTO> getTop5UsersByTotalAmount(int limit);
 
     List<OrderDTO> filterByStatusNamedQuery(String status);
+
+    List<OrdersPerUserDTO> getCountOrdersPerUser();
 }

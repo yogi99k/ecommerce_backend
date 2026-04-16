@@ -70,4 +70,7 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
 
     @Query(name="find_orders_by_status")
     List<Orders> filterByStatusNamedQuery(@Param("orderStatus") String status);
+
+    @Query(name="Orders.CountOrdersPer_User")
+    List<Object[]> getCountOrdersPerUser();
 }

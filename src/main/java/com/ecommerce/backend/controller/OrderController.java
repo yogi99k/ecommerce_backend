@@ -1,9 +1,6 @@
 package com.ecommerce.backend.controller;
 
-import com.ecommerce.backend.dto.OrderDTO;
-import com.ecommerce.backend.dto.ProductsDTO;
-import com.ecommerce.backend.dto.TopUserTotalDTO;
-import com.ecommerce.backend.dto.UsersDto;
+import com.ecommerce.backend.dto.*;
 import com.ecommerce.backend.service.OrderService;
 import org.springdoc.core.converters.models.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -97,5 +94,11 @@ public class OrderController {
     @GetMapping("/usingNamedQuery/filter/status")
     public List<OrderDTO> filterByStatusNamedQuery(@RequestParam String status){
         return orderService.filterByStatusNamedQuery(status);
+    }
+
+    //5. Count Orders per User (DTO)
+    @GetMapping("/usingNamedQuery/countOrdersPerUser")
+    public List<OrdersPerUserDTO> getCountOrdersPerUser(){
+        return orderService.getCountOrdersPerUser();
     }
 }
