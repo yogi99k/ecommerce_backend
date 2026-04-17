@@ -38,4 +38,6 @@ public interface OrderService {
     List<OrdersPerUserDTO> getCountOrdersPerUser();
 
     List<OrdersPerStatusDTO> getCountOrdersPerStatus();
+
+    List<OrdersMonthlyRevenueDTO> getMonthlyRevenue();
 }

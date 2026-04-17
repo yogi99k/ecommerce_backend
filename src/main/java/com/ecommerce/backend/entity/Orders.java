@@ -16,6 +16,17 @@ import java.time.LocalDateTime;
         name="Orders.CountOrdersPer_User",
         query="select o.users.userId, count(o.orderId) as num_of_orders from Orders o group by o.users.userId order by num_of_orders desc"
 )
+@NamedNativeQuery(
+        name="Orders.getMonthlyRevenue",
+        query="SELECT\n" +
+                "    YEAR(order_date) AS year,\n" +
+                "    MONTH(order_date) AS month,\n" +
+                "    SUM(total_amount) AS monthly_revenue\n" +
+                "FROM orders\n" +
+                "GROUP BY YEAR(order_date), MONTH(order_date)\n" +
+                "ORDER BY year, month;"
+
+)
 @Getter @Setter
 public class Orders {
 

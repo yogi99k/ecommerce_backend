@@ -1,9 +1,6 @@
 package com.ecommerce.backend.service.Impl;
 
-import com.ecommerce.backend.dto.OrderDTO;
-import com.ecommerce.backend.dto.OrdersPerStatusDTO;
-import com.ecommerce.backend.dto.OrdersPerUserDTO;
-import com.ecommerce.backend.dto.TopUserTotalDTO;
+import com.ecommerce.backend.dto.*;
 import com.ecommerce.backend.entity.Orders;
 import com.ecommerce.backend.mapper.OrderMapper;
 import com.ecommerce.backend.repository.OrderRepository;
@@ -13,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -161,6 +159,18 @@ public class OrderServiceImpl implements OrderService {
                 .map(row -> new OrdersPerStatusDTO(
                         (String) row[0],
                         (Long) row[1]
+                ))
+                .toList();
+    }
+
+    @Override
+    public List<OrdersMonthlyRevenueDTO> getMonthlyRevenue() {
+        return orderRepository.getMonthlyRevenue()
+                .stream()
+                .map(row -> new OrdersMonthlyRevenueDTO(
+                        (int) row[0],
+                        (int) row[1],
+                        (BigDecimal) row[2]
                 ))
                 .toList();
     }

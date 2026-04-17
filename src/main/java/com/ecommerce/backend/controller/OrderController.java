@@ -108,4 +108,11 @@ public class OrderController {
     public List<OrdersPerStatusDTO> getCountOrdersPerStatus(){
         return orderService.getCountOrdersPerStatus();
     }
+
+    //NamedNativeQuery
+    // 7. Monthly Revenue
+    @GetMapping("/usingNameNativeQuery/monthlyRevenue")
+    public List<OrdersMonthlyRevenueDTO> getMonthlyRevenue(){
+        return orderService.getMonthlyRevenue();
+    }
 }

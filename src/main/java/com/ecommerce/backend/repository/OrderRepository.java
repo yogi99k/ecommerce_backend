@@ -1,6 +1,7 @@
 package com.ecommerce.backend.repository;
 
 import com.ecommerce.backend.dto.OrderDTO;
+import com.ecommerce.backend.dto.OrdersMonthlyRevenueDTO;
 import com.ecommerce.backend.dto.TopUserTotalDTO;
 import com.ecommerce.backend.entity.Orders;
 import com.ecommerce.backend.entity.Users;
@@ -78,4 +79,6 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
     @Query(value = "select order_status, count(order_id) as count from orders group by order_status order by count desc",nativeQuery = true)
     List<Object[]> getCountOrdersPerStatus();
 
+    @Query(name="Orders.getMonthlyRevenue")
+    List<Object[]> getMonthlyRevenue();
 }
