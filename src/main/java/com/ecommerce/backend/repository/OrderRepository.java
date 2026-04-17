@@ -79,6 +79,6 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
     @Query(value = "select order_status, count(order_id) as count from orders group by order_status order by count desc",nativeQuery = true)
     List<Object[]> getCountOrdersPerStatus();
 
-    @Query(name="Orders.getMonthlyRevenue")
+    @Query(name="Orders.getMonthlyRevenue",nativeQuery = true)
     List<Object[]> getMonthlyRevenue();
 }
