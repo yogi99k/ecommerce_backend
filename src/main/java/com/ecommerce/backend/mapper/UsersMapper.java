@@ -9,14 +9,7 @@ public class UsersMapper {
     public static UsersDto toDto(Users users){
 
         if (users == null) return null;
-        UsersDto usersDto = new UsersDto(
-//                users.getUser_id(),
-//                users.getName(),
-//                users.getEmail(),
-//                users.getCity(),
-//                users.getSignup_date()
-        );
-
+        UsersDto usersDto = new UsersDto();
         usersDto.setUserId(users.getUserId());
         usersDto.setName(users.getName());
         usersDto.setEmail(users.getEmail());

@@ -1,9 +1,6 @@
 package com.ecommerce.backend.controller;
 
-import com.ecommerce.backend.dto.OrderDTO;
-import com.ecommerce.backend.dto.ProductsDTO;
-import com.ecommerce.backend.dto.TopUserTotalDTO;
-import com.ecommerce.backend.dto.UsersDto;
+import com.ecommerce.backend.dto.*;
 import com.ecommerce.backend.service.OrderService;
 import org.springdoc.core.converters.models.Sort;
 import org.springframework.web.bind.annotation.*;
@@ -90,5 +87,32 @@ public class OrderController {
     @GetMapping("/total/Top5UsersByTotalAmount")
     public List<TopUserTotalDTO> getTop5UsersByTotalAmount(@RequestParam(required = false) int limit){
         return orderService.getTop5UsersByTotalAmount(limit);
+    }
+
+    //Assignment-2
+    //1. Get Orders by Status - Using NamedQuery
+    @GetMapping("/usingNamedQuery/filter/status")
+    public List<OrderDTO> filterByStatusNamedQuery(@RequestParam String status){
+        return orderService.filterByStatusNamedQuery(status);
+    }
+
+    //5. Count Orders per User (DTO)
+    @GetMapping("/usingNamedQuery/countOrdersPerUser")
+    public List<OrdersPerUserDTO> getCountOrdersPerUser(){
+        return orderService.getCountOrdersPerUser();
+    }
+
+    //Part-2 : NativeQuery
+    //Orders Count per Status
+    @GetMapping("/usingNativeQuery/countOrdersPerStatus")
+    public List<OrdersPerStatusDTO> getCountOrdersPerStatus(){
+        return orderService.getCountOrdersPerStatus();
+    }
+
+    //NamedNativeQuery
+    // 7. Monthly Revenue
+    @GetMapping("/usingNameNativeQuery/monthlyRevenue")
+    public List<OrdersMonthlyRevenueDTO> getMonthlyRevenue(){
+        return orderService.getMonthlyRevenue();
     }
 }

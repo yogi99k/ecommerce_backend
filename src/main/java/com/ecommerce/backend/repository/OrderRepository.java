@@ -1,5 +1,7 @@
 package com.ecommerce.backend.repository;
 
+import com.ecommerce.backend.dto.OrderDTO;
+import com.ecommerce.backend.dto.OrdersMonthlyRevenueDTO;
 import com.ecommerce.backend.dto.TopUserTotalDTO;
 import com.ecommerce.backend.entity.Orders;
 import com.ecommerce.backend.entity.Users;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -66,4 +69,16 @@ public interface OrderRepository extends JpaRepository<Orders,String> {
 """)
     List<Object[]> getTopUsersByTotalAmount(Pageable pageable);
 
+
+    @Query(name="find_orders_by_status")
+    List<Orders> filterByStatusNamedQuery(@Param("orderStatus") String status);
+
+    @Query(name="Orders.CountOrdersPer_User")
+    List<Object[]> getCountOrdersPerUser();
+
+    @Query(value = "select order_status, count(order_id) as count from orders group by order_status order by count desc",nativeQuery = true)
+    List<Object[]> getCountOrdersPerStatus();
+
+    @Query(name="Orders.getMonthlyRevenue",nativeQuery = true)
+    List<Object[]> getMonthlyRevenue();
 }
