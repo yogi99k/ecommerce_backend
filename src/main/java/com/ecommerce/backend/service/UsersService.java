@@ -26,4 +26,6 @@ public interface UsersService {
     List<UsersDto> filterByGender(String gender);
 
     List<UsersDto> filterByCity(String city);
+
+    List<UsersDto> fetchUsers();
 }

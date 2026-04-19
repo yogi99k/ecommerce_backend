@@ -96,4 +96,12 @@ public class UsersServiceImpl implements UsersService {
                 .map(UsersMapper::toDto)
                 .toList();
     }
+
+    @Override
+    public List<UsersDto> fetchUsers() {
+        return userRepository.findAllUsers()
+                .stream()
+                .map(UsersMapper::toDto)
+                .toList();
+    }
 }

@@ -14,4 +14,5 @@ public interface UserRepository extends JpaRepository<Users, String> {
 
     List<Users> findByGender(String gender);
 
+    List<Users> findAllUsers();
 }

@@ -9,6 +9,8 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -76,6 +78,12 @@ public class UserController {
     @GetMapping("/filter/city")
     public List<UsersDto> filterByCity(@RequestParam String city){
         return usersService.filterByCity(city);
+    }
+
+    @GetMapping("/admin")
+    public ResponseEntity<List<UsersDto>> fetchUsers(){
+        List<UsersDto> result = usersService.fetchUsers();
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
 }
