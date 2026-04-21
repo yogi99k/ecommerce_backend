@@ -5,6 +5,7 @@ import com.ecommerce.backend.entity.Products;
 import com.ecommerce.backend.mapper.ProductsMapper;
 import com.ecommerce.backend.repository.ProductsRepository;
 import com.ecommerce.backend.service.ProductsService;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,5 +45,17 @@ public class ProductsServiceImpl implements ProductsService {
     @Override
     public void deleteProduct(String id){
         productsRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ProductsDTO> getSortByRatingAndPrice(String ratingSort, String priceSort) {
+        Sort sort = Sort.by(
+                Sort.Order.by("rating").with(Sort.Direction.fromString(ratingSort)),
+                Sort.Order.by("price").with(Sort.Direction.fromString(ratingSort))
+        );
+        return productsRepository.findAll(sort)
+                .stream()
+                .map(ProductsMapper::toDto)
+                .toList();
     }
 }

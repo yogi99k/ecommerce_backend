@@ -35,4 +35,11 @@ public class ProductsController {
     public void deleteProduct(@PathVariable String id){
         productsService.deleteProduct(id);
     }
+
+    //Sort products by rating descending, then price ascending
+    @GetMapping("/A2b/SortByRatig&Price")
+    public List<ProductsDTO> getSortByRatingAndPrice(@RequestParam(required = false,defaultValue = "desc") String ratingSort,
+                                                  @RequestParam(required = false,defaultValue = "desc") String priceSort){
+        return productsService.getSortByRatingAndPrice(ratingSort, priceSort);
+    }
 }

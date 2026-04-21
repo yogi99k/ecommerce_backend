@@ -15,4 +15,6 @@ public interface ProductsService {
     ProductsDTO createProducts(ProductsDTO productsDTO);
 
     void deleteProduct(String id);
+
+    List<ProductsDTO> getSortByRatingAndPrice(String ratingSort, String priceSort);
 }
