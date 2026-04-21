@@ -78,4 +78,11 @@ public class UserController {
         return usersService.filterByCity(city);
     }
 
+    //Assignment-2B
+    //Sort all users by signup_date descending
+    @GetMapping("/A2b/sortBySignupDate")
+    public List<UsersDto> getSortBySignupDate(@RequestParam(required = false,defaultValue = "desc") String direction){
+        return usersService.getSortBySignupDate(direction);
+    }
+
 }

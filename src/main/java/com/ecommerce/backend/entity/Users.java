@@ -25,8 +25,8 @@ public class Users {
     private String gender;
     @Column
     private String city;
-    @Column
-    private LocalDate signup_date;
+    @Column(name = "signup_date")
+    private LocalDate signupDate;
 
     @OneToMany(mappedBy = "users", cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Orders> orders = new ArrayList<>();
