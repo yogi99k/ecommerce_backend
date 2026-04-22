@@ -44,4 +44,10 @@ public class ProductsController {
                                                   @RequestParam(required = false,defaultValue = "desc") String priceSort){
         return productsService.getSortByRatingAndPrice(ratingSort, priceSort);
     }
+    //Paginate orders with status = cancelled
+    @GetMapping("/A2b/PaginateOrdersWithStatusCancelled")
+    public List<ProductsDTO> getPaginateOrdersWithStatusCancelled(@RequestParam int page,
+                                                                  @RequestParam int size){
+        return productsService.getPaginateOrdersWithStatusCancelled(page,size);
+    }
 }

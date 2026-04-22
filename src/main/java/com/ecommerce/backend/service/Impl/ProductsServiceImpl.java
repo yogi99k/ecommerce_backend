@@ -61,4 +61,13 @@ public class ProductsServiceImpl implements ProductsService {
                 .map(ProductsMapper::toDto)
                 .toList();
     }
+
+    @Override
+    public List<ProductsDTO> getPaginateOrdersWithStatusCancelled(int page, int size) {
+        Pageable pageable = PageRequest.of(page,size,Sort.by("price").descending());
+        return productsRepository.getPaginateOrdersWithStatusCancelled(pageable)
+                .stream()
+                .map(ProductsMapper::toDto)
+                .toList();
+    }
 }

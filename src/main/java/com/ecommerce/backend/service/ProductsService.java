@@ -17,4 +17,6 @@ public interface ProductsService {
     void deleteProduct(String id);
 
     List<ProductsDTO> getSortByRatingAndPrice(String ratingSort, String priceSort);
+
+    List<ProductsDTO> getPaginateOrdersWithStatusCancelled(int page, int size);
 }
