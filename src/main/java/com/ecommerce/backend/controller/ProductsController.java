@@ -16,9 +16,11 @@ public class ProductsController {
         this.productsService=productsService;
     }
 
-    @GetMapping
-    public List<ProductsDTO> getAllProducts(){
-        return productsService.getAllProducts();
+    //Paginate products, sorted by price descending
+    @GetMapping("/getAll")
+    public List<ProductsDTO> getAllProducts(@RequestParam int page,
+                                            @RequestParam int size){
+        return productsService.getAllProducts(page,size);
     }
 
     @PostMapping
