@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface UsersService {
 
-    List<UsersDto> getAllUsers();
+    List<UsersDto> getAllUsers(int page, int size);
 
     UsersDto getUserById(String id);
 
@@ -28,4 +28,5 @@ public interface UsersService {
     List<UsersDto> filterByCity(String city);
 
     List<UsersDto> getSortBySignupDate(String direction);
+
 }

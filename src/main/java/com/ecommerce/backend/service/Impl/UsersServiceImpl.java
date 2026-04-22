@@ -6,6 +6,8 @@ import com.ecommerce.backend.mapper.UsersMapper;
 import com.ecommerce.backend.repository.UserRepository;
 import com.ecommerce.backend.service.UsersService;
 //import org.springdoc.core.converters.models.Sort;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -24,8 +26,10 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public List<UsersDto> getAllUsers() {
-        return userRepository.findAll()
+    public List<UsersDto> getAllUsers(int page, int size) {
+        Pageable pageable = PageRequest.of(page,size);
+        return userRepository.findAll(pageable)
+                .getContent()
                 .stream()
                 .map(UsersMapper::toDto)
                 .collect(Collectors.toList());
