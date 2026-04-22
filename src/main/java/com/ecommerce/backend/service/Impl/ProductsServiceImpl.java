@@ -5,6 +5,10 @@ import com.ecommerce.backend.entity.Products;
 import com.ecommerce.backend.mapper.ProductsMapper;
 import com.ecommerce.backend.repository.ProductsRepository;
 import com.ecommerce.backend.service.ProductsService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +24,9 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public List<ProductsDTO> getAllProducts(){
-        List<ProductsDTO> collect = productsRepository.findAll()
+    public List<ProductsDTO> getAllProducts(int page,int size){
+        Pageable pageable = PageRequest.of(page,size,Sort.by("price").descending());
+        List<ProductsDTO> collect = productsRepository.findAll(pageable)
                 .stream()
                 .map(ProductsMapper::toDto)
                 .collect(Collectors.toList());
@@ -44,5 +49,26 @@ public class ProductsServiceImpl implements ProductsService {
     @Override
     public void deleteProduct(String id){
         productsRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ProductsDTO> getSortByRatingAndPrice(String ratingSort, String priceSort) {
+        Sort sort = Sort.by(
+                Sort.Order.by("rating").with(Sort.Direction.fromString(ratingSort)),
+                Sort.Order.by("price").with(Sort.Direction.fromString(priceSort))
+        );
+        return productsRepository.findAll(sort)
+                .stream()
+                .map(ProductsMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public Page<ProductsDTO> getPaginateOrdersWithStatusCancelled(int page, int size, float rating) {
+        Pageable pageable = PageRequest.of(page,size,Sort.by("price").descending());
+        return productsRepository.getPaginateOrdersWithStatusCancelled(rating,pageable)
+                //.stream()
+                .map(ProductsMapper::toDto);
+                //.toList();
     }
 }

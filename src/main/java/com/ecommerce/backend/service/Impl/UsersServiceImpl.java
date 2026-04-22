@@ -5,6 +5,10 @@ import com.ecommerce.backend.entity.Users;
 import com.ecommerce.backend.mapper.UsersMapper;
 import com.ecommerce.backend.repository.UserRepository;
 import com.ecommerce.backend.service.UsersService;
+//import org.springdoc.core.converters.models.Sort;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,8 +26,10 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public List<UsersDto> getAllUsers() {
-        return userRepository.findAll()
+    public List<UsersDto> getAllUsers(int page, int size) {
+        Pageable pageable = PageRequest.of(page,size);
+        return userRepository.findAll(pageable)
+                .getContent()
                 .stream()
                 .map(UsersMapper::toDto)
                 .collect(Collectors.toList());
@@ -59,7 +65,7 @@ public class UsersServiceImpl implements UsersService {
         existingUser.setName(userDTO.getName());
         existingUser.setEmail(userDTO.getEmail());
         existingUser.setCity(userDTO.getCity());
-        existingUser.setSignup_date(userDTO.getSignup_date());
+        existingUser.setSignupDate(userDTO.getSignup_date());
 
         Users updatedUser = userRepository.save(existingUser);
         return UsersMapper.toDto(updatedUser);
@@ -92,6 +98,24 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<UsersDto> filterByCity(String city){
         return userRepository.findByCity(city)
+                .stream()
+                .map(UsersMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<UsersDto> getSortBySignupDate(String direction) {
+//        Sort sort;
+//        if ("asc".equalsIgnoreCase(direction)) {
+//            sort = Sort.by("signupDate").ascending();
+//        } else {
+//            sort = Sort.by("signupDate").descending();
+//        }
+        Sort orders = direction.equalsIgnoreCase("desc") ?
+                Sort.by("signupDate").descending() :
+                Sort.by("signupDate").ascending();
+
+        return userRepository.findAll(orders)
                 .stream()
                 .map(UsersMapper::toDto)
                 .toList();

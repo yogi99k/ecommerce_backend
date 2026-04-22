@@ -14,7 +14,7 @@ public class UsersMapper {
         usersDto.setName(users.getName());
         usersDto.setEmail(users.getEmail());
         usersDto.setCity(users.getCity());
-        usersDto.setSignup_date(users.getSignup_date());
+        usersDto.setSignup_date(users.getSignupDate());
 
         return usersDto;
     }
@@ -29,7 +29,7 @@ public class UsersMapper {
         users.setName(usersDto.getName());
         users.setEmail(usersDto.getEmail());
         users.setCity(usersDto.getCity());
-        users.setSignup_date(usersDto.getSignup_date());
+        users.setSignupDate(usersDto.getSignup_date());
 
         return users;
     }

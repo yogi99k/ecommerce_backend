@@ -24,9 +24,11 @@ public class UserController {
         this.usersService = usersService;
     }
 
+    //Paginate all users, 10 per page
     @GetMapping
-    public List<UsersDto> getAllUsers(){
-        return usersService.getAllUsers();
+    public List<UsersDto> getAllUsers(@RequestParam int page,
+                                      @RequestParam int size){
+        return usersService.getAllUsers(page,size);
     }
 
     @GetMapping("/{id}")
@@ -52,18 +54,18 @@ public class UserController {
 
     //If both name and city are given in filter ?
     //Need to optimize the search
-    @GetMapping("/search")
-    public List<UsersDto> searchByName(
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String city) {
-        if (name != null) {
-            return usersService.searchByName(name);
-        } else if (city != null) {
-            return usersService.searchByCity(city);
-        } else {
-            return usersService.getAllUsers();
-        }
-    }
+//    @GetMapping("/search")
+//    public List<UsersDto> searchByName(
+//            @RequestParam(required = false) String name,
+//            @RequestParam(required = false) String city) {
+//        if (name != null) {
+//            return usersService.searchByName(name);
+//        } else if (city != null) {
+//            return usersService.searchByCity(city);
+//        } else {
+//            return usersService.getAllUsers();
+//        }
+//    }
 
     @GetMapping("/filter")
     public List<UsersDto> filterByGender(@RequestParam
@@ -77,5 +79,14 @@ public class UserController {
     public List<UsersDto> filterByCity(@RequestParam String city){
         return usersService.filterByCity(city);
     }
+
+    //Assignment-2B
+    //Sort all users by signup_date descending
+    @GetMapping("/A2b/sortBySignupDate")
+    public List<UsersDto> getSortBySignupDate(@RequestParam(required = false,defaultValue = "desc") String direction){
+        return usersService.getSortBySignupDate(direction);
+    }
+    //Paginate all users, 10 per page
+
 
 }
