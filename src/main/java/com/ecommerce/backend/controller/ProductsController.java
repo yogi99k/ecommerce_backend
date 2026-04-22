@@ -2,6 +2,7 @@ package com.ecommerce.backend.controller;
 
 import com.ecommerce.backend.dto.ProductsDTO;
 import com.ecommerce.backend.service.ProductsService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,8 +47,9 @@ public class ProductsController {
     }
     //Paginate orders with status = cancelled
     @GetMapping("/A2b/PaginateOrdersWithStatusCancelled")
-    public List<ProductsDTO> getPaginateOrdersWithStatusCancelled(@RequestParam int page,
-                                                                  @RequestParam int size){
-        return productsService.getPaginateOrdersWithStatusCancelled(page,size);
+    public Page<ProductsDTO> getPaginateOrdersWithStatusCancelled(@RequestParam int page,
+                                                                  @RequestParam int size,
+                                                                  @RequestParam float rating){
+        return productsService.getPaginateOrdersWithStatusCancelled(page,size,rating);
     }
 }

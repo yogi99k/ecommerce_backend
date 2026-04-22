@@ -5,6 +5,7 @@ import com.ecommerce.backend.entity.Products;
 import com.ecommerce.backend.mapper.ProductsMapper;
 import com.ecommerce.backend.repository.ProductsRepository;
 import com.ecommerce.backend.service.ProductsService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -63,11 +64,11 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public List<ProductsDTO> getPaginateOrdersWithStatusCancelled(int page, int size) {
+    public Page<ProductsDTO> getPaginateOrdersWithStatusCancelled(int page, int size, float rating) {
         Pageable pageable = PageRequest.of(page,size,Sort.by("price").descending());
-        return productsRepository.getPaginateOrdersWithStatusCancelled(pageable)
-                .stream()
-                .map(ProductsMapper::toDto)
-                .toList();
+        return productsRepository.getPaginateOrdersWithStatusCancelled(rating,pageable)
+                //.stream()
+                .map(ProductsMapper::toDto);
+                //.toList();
     }
 }
