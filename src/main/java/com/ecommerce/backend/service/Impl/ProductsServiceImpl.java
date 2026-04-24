@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,4 +72,27 @@ public class ProductsServiceImpl implements ProductsService {
                 .map(ProductsMapper::toDto);
                 //.toList();
     }
+
+    @Override
+    public List<ProductsDTO> getDynamicAPI2(String category, Integer minPrice, Integer maxPrice, int page, int size) {
+        Pageable pageable = PageRequest.of(page,size,Sort.by("price").descending());
+
+        Specification<Products> spec = (root, query, cb) -> cb.conjunction();
+        if(category!=null){
+            spec = spec.and(((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("category"),category)));
+        }
+        if(minPrice!=null){
+            spec =spec.and(((root, query, criteriaBuilder) ->
+                    criteriaBuilder.greaterThanOrEqualTo(root.get("price"),minPrice)));
+        }
+        if(maxPrice!=null){
+            spec = spec.and(((root, query, criteriaBuilder) ->
+                    criteriaBuilder.lessThanOrEqualTo(root.get("price"),maxPrice)));
+        }
+        Page<Products> products = productsRepository.findAll(spec, pageable);
+        return products.map(ProductsMapper::toDto).toList();
+
+    }
+
 }

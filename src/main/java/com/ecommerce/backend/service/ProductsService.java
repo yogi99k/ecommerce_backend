@@ -20,4 +20,6 @@ public interface ProductsService {
     List<ProductsDTO> getSortByRatingAndPrice(String ratingSort, String priceSort);
 
     Page<ProductsDTO> getPaginateOrdersWithStatusCancelled(int page, int size, float rating);
+
+    List<ProductsDTO> getDynamicAPI2(String category, Integer minPrice, Integer maxPrice, int page, int size);
 }
