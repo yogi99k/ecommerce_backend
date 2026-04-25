@@ -86,7 +86,13 @@ public class UserController {
     public List<UsersDto> getSortBySignupDate(@RequestParam(required = false,defaultValue = "desc") String direction){
         return usersService.getSortBySignupDate(direction);
     }
-    //Paginate all users, 10 per page
+    //A2C
+    //GET /api/users?page=0&size=10&sortBy=name&sortDir=asc
+    @GetMapping("/dynamicAPIREQ1")
+    public List<UsersDto> getDynamicAPIREQ1(@RequestParam int page,
+                                            @RequestParam int size){
+        return usersService.getDynamicAPIREQ1(page,size);
+    }
 
 
 }

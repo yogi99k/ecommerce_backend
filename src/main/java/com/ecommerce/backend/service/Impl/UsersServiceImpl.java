@@ -120,4 +120,10 @@ public class UsersServiceImpl implements UsersService {
                 .map(UsersMapper::toDto)
                 .toList();
     }
+
+    @Override
+    public List<UsersDto> getDynamicAPIREQ1(int page, int size) {
+        Pageable pageable = PageRequest.of(page,size,Sort.by("name").ascending());
+        return userRepository.findAll(pageable).getContent().stream().map(UsersMapper::toDto).toList();
+    }
 }

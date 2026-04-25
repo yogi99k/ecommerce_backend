@@ -52,4 +52,20 @@ public class ProductsController {
                                                                   @RequestParam float rating){
         return productsService.getPaginateOrdersWithStatusCancelled(page,size,rating);
     }
+    //A2C
+    /**
+     * GET /api/products?category=Electronics&minPrice=100&maxPrice=1000&page=0&size=10&sortBy=price
+     * Requirements:
+     * filter by category (optional)
+     * filter by minPrice (optional)
+     * filter by maxPrice (optional)
+     */
+    @GetMapping("/dynamicAPI2")
+    public List<ProductsDTO> getDynamicAPI2(@RequestParam(required = false) String category,
+                                            @RequestParam(required = false) Integer minPrice,
+                                            @RequestParam(required = false) Integer maxPrice,
+                                            @RequestParam int page,
+                                            @RequestParam int size){
+        return productsService.getDynamicAPI2(category,minPrice,maxPrice,page,size);
+    }
 }

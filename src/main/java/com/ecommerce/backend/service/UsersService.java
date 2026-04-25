@@ -29,4 +29,5 @@ public interface UsersService {
 
     List<UsersDto> getSortBySignupDate(String direction);
 
+    List<UsersDto> getDynamicAPIREQ1(int page, int size);
 }
