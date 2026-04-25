@@ -1,7 +1,6 @@
 package com.ecommerce.backend.client.service;
 
 import com.ecommerce.backend.dto.TodoDTO;
-import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
