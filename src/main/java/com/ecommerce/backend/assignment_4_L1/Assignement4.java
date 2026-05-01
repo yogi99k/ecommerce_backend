@@ -13,7 +13,7 @@ public class Assignement4 {
                 .toList();
         System.out.println(list);
         //2.Names uppercases
-        List<String> names = new ArrayList<>(Arrays.asList("vix","max","dix"));
+        List<String> names = new ArrayList<>(Arrays.asList("vix","max","dix","marvel","peter","antony","jackson"));
         names.add("yogi");
         names.add("min");
         names.add("sam");
@@ -26,5 +26,10 @@ public class Assignement4 {
         //4. Remove Duplicates
         List<Integer> arr3 = new ArrayList<>(Arrays.asList(4,1,2,5,3,4,2,4,5,7,8,5,7,1));
         System.out.println(arr3.stream().distinct().toList());
+        //Count Strings with Length > 5
+        List<String> list2 = names.stream()
+                .filter(i -> i.length() > 4)
+                .toList();
+        System.out.println(list2);
     }
 }
