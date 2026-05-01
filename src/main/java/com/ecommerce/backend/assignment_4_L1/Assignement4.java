@@ -23,6 +23,8 @@ public class Assignement4 {
         System.out.println(list1);
         //3. Sum of Numbers
         System.out.println(arr1.stream().mapToInt(Integer::intValue).sum());
-
+        //4. Remove Duplicates
+        List<Integer> arr3 = new ArrayList<>(Arrays.asList(4,1,2,5,3,4,2,4,5,7,8,5,7,1));
+        System.out.println(arr3.stream().distinct().toList());
     }
 }
