@@ -12,5 +12,14 @@ public class Assignement4 {
                 .filter(i -> i % 2 == 0)
                 .toList();
         System.out.println(list);
+        //2.Names uppercases
+        List<String> names = new ArrayList<>(Arrays.asList("vix","max","dix"));
+        names.add("yogi");
+        names.add("min");
+        names.add("sam");
+        names.add("pit");
+
+        List<String> list1 = names.stream().map(s -> s.toUpperCase()).toList();
+        System.out.println(list1);
     }
 }
