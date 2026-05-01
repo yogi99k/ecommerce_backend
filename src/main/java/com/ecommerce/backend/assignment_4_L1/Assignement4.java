@@ -21,5 +21,8 @@ public class Assignement4 {
 
         List<String> list1 = names.stream().map(s -> s.toUpperCase()).toList();
         System.out.println(list1);
+        //3. Sum of Numbers
+        System.out.println(arr1.stream().mapToInt(Integer::intValue).sum());
+
     }
 }
