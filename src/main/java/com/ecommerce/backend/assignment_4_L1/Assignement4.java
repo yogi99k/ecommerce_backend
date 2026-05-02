@@ -86,5 +86,24 @@ public class Assignement4 {
         System.out.println("Count   : " + stats.getCount());
         System.out.println("Min     : " + stats.getMin());
         System.out.println("Max     : " + stats.getMax());
+
+        //Level 2: Mapping & FlatMapping
+        //6. Given a list of List<Integer> (nested lists), flatten it into a single list and sort it.
+        List<List<Integer>> numbers = Arrays.asList(
+                Arrays.asList(5, 2, 9),
+                Arrays.asList(1, 7, 3),
+                Arrays.asList(8, 4, 6),
+                Arrays.asList(-4,0,99)
+        );
+        List<Integer> list2 = numbers.stream()
+                .flatMap(List::stream)
+                .sorted()
+                .toList();
+        System.out.println(list2);
+        //7. Given a list of Person objects (with name and list of hobbies), return all unique hobbies across all persons.
+        //8. Convert a list of Employee (id, name, salary) into a Map<Integer, String> (id → name).
+        //9. Given a list of strings, group them by their length (Map<Integer, List<String>>).
+        //10. Sort a list of Employee by salary descending, then by name ascending if salary is same.
     }
+
 }
