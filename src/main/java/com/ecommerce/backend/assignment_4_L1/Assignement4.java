@@ -2,6 +2,7 @@ package com.ecommerce.backend.assignment_4_L1;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Assignement4 {
@@ -123,7 +124,6 @@ public class Assignement4 {
                 new Employee(104,"nik",85.5),
                 new Employee(105,"mar",95.5)
                 //new Employee(102,"vix",45.5)
-
                 );
         Map<Integer, Employee> collect1 = employeeList.stream()
                 .collect(Collectors.toMap(
@@ -133,6 +133,12 @@ public class Assignement4 {
                 ));
         System.out.println(collect1);
         //9. Given a list of strings, group them by their length (Map<Integer, List<String>>).
+        Map<Integer, List<String>> collect2 = names.stream()
+                .distinct()
+                .collect(Collectors.groupingBy(
+                        String::length
+                ));
+        System.out.println(collect2);
         //10. Sort a list of Employee by salary descending, then by name ascending if salary is same.
     }
 
