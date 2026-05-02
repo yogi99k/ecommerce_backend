@@ -49,7 +49,14 @@ public class Assignement4 {
                 .toList();
         System.out.println(list);
         //2.Given a list of strings, convert all to uppercase and remove duplicates.
+        List<String> names = new ArrayList<>(Arrays.asList("vix","max","dix","marvel","peter","antony","jackson","ram","gopi","vix","peter"));
+        List<String> list1 = names.stream()
+                .distinct()
+                .map(s -> s.toUpperCase())
+                .toList();
+        System.out.println(list1);
         //3.Find the maximum and minimum number in a list using streams (return both in one object or record).
+
         //4.Count the frequency of each character in a given string using streams.
         //5.Given a list of integers, calculate sum, average, count, min, and max in one stream pass (use summarizingInt).
     }
