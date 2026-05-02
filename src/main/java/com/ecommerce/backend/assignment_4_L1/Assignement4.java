@@ -101,7 +101,21 @@ public class Assignement4 {
                 .toList();
         System.out.println(list2);
         //7. Given a list of Person objects (with name and list of hobbies), return all unique hobbies across all persons.
+        record Person(String name, List<String> hobbies){}
+        List<Person> people = List.of(
+                new Person("Alice", List.of("Reading", "Swimming", "Hiking")),
+                new Person("Bob",   List.of("Gaming", "Reading", "Cooking")),
+                new Person("Charlie", List.of("Swimming", "Photography", "Hiking")),
+                new Person("Diana", List.of("Reading", "Painting")));
+        List<String> list3 = people.stream()
+                .flatMap(person -> person.hobbies().stream())
+                .map(String::toLowerCase)
+                .distinct()
+                .sorted()
+                .toList();
+        System.out.println(list3);
         //8. Convert a list of Employee (id, name, salary) into a Map<Integer, String> (id → name).
+
         //9. Given a list of strings, group them by their length (Map<Integer, List<String>>).
         //10. Sort a list of Employee by salary descending, then by name ascending if salary is same.
     }
