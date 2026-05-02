@@ -115,7 +115,20 @@ public class Assignement4 {
                 .toList();
         System.out.println(list3);
         //8. Convert a list of Employee (id, name, salary) into a Map<Integer, String> (id → name).
-
+        record Employee(int id, String name, Double salary){}
+        List<Employee> employeeList = List.of(
+                new Employee(101,"yogi",55.5),
+                new Employee(102,"max",65.5),
+                new Employee(103,"kris",75.5),
+                new Employee(104,"nik",85.5),
+                new Employee(105,"mar",95.5)
+        );
+        Map<Integer, String> collect1 = employeeList.stream()
+                .collect(Collectors.toMap(
+                        Employee::id,
+                        Employee::name
+                ));
+        System.out.println(collect1);
         //9. Given a list of strings, group them by their length (Map<Integer, List<String>>).
         //10. Sort a list of Employee by salary descending, then by name ascending if salary is same.
     }
