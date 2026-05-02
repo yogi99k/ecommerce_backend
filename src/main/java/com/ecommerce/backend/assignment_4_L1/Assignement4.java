@@ -2,7 +2,9 @@ package com.ecommerce.backend.assignment_4_L1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+
 
 public class Assignement4 {
     public static void main(String[] args) {
@@ -56,8 +58,19 @@ public class Assignement4 {
                 .toList();
         System.out.println(list1);
         //3.Find the maximum and minimum number in a list using streams (return both in one object or record).
+        IntSummaryStatistics intSummaryStatistics = nums.stream()
+                .mapToInt(Integer::intValue)
+                .summaryStatistics();
+        System.out.println("MAX : "+intSummaryStatistics.getMax()+", Min : "+intSummaryStatistics.getMin());
 
+        record MinMax(int max, int min){}
+        MinMax minMax = new MinMax(
+                nums.stream().max(Integer::compareTo).get(),
+                nums.stream().min(Integer::compareTo).get()
+        );
+        System.out.println(minMax);
         //4.Count the frequency of each character in a given string using streams.
+
         //5.Given a list of integers, calculate sum, average, count, min, and max in one stream pass (use summarizingInt).
     }
 }
