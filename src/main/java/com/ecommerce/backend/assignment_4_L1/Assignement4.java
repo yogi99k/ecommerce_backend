@@ -78,6 +78,13 @@ public class Assignement4 {
                 ));
         System.out.println(collect);
         //5.Given a list of integers, calculate sum, average, count, min, and max in one stream pass (use summarizingInt).
-
+        IntSummaryStatistics stats = nums.stream()
+                .mapToInt(Integer::intValue)
+                .summaryStatistics();
+        System.out.println("Sum     : " + stats.getSum());
+        System.out.println("Average : " + stats.getAverage());
+        System.out.println("Count   : " + stats.getCount());
+        System.out.println("Min     : " + stats.getMin());
+        System.out.println("Max     : " + stats.getMax());
     }
 }
