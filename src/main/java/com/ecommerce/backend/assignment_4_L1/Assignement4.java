@@ -1,9 +1,7 @@
 package com.ecommerce.backend.assignment_4_L1;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Assignement4 {
@@ -70,7 +68,16 @@ public class Assignement4 {
         );
         System.out.println(minMax);
         //4.Count the frequency of each character in a given string using streams.
-
+        String str = "hello world java streams";
+        Map<Character, Long> collect = str.chars()
+                .mapToObj(c -> (char) c)
+                .filter(c -> !Character.isWhitespace(c))
+                .collect(Collectors.groupingBy(
+                        c -> c,
+                        Collectors.counting()
+                ));
+        System.out.println(collect);
         //5.Given a list of integers, calculate sum, average, count, min, and max in one stream pass (use summarizingInt).
+
     }
 }
