@@ -122,11 +122,14 @@ public class Assignement4 {
                 new Employee(103,"kris",75.5),
                 new Employee(104,"nik",85.5),
                 new Employee(105,"mar",95.5)
-        );
-        Map<Integer, String> collect1 = employeeList.stream()
+                //new Employee(102,"vix",45.5)
+
+                );
+        Map<Integer, Employee> collect1 = employeeList.stream()
                 .collect(Collectors.toMap(
                         Employee::id,
-                        Employee::name
+                        //Employee::name
+                        e->e
                 ));
         System.out.println(collect1);
         //9. Given a list of strings, group them by their length (Map<Integer, List<String>>).
