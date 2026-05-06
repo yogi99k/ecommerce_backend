@@ -191,6 +191,26 @@ public class Assignement4 {
                 .collect(Collectors.partitioningBy(i -> i % 2 == 0));
         System.out.println("Even Nums : "+collect6.get(true));
         System.out.println("Odd Nums : "+collect6.get(false));
-    }
 
+        //15. Given a list of transactions, find the top 3 most expensive transactions.
+        record Transaction(int id, String item, double amount, String date) {}
+        List<Transaction> transactions = List.of(
+                new Transaction(1, "Laptop", 1200.50, "2025-01-10"),
+                new Transaction(2, "Phone", 899.99, "2025-01-12"),
+                new Transaction(3, "Headphones", 129.99, "2025-01-15"),
+                new Transaction(4, "Monitor", 450.00, "2025-01-20"),
+                new Transaction(5, "Keyboard", 89.99, "2025-01-22"),
+                new Transaction(6, "Tablet", 650.00, "2025-01-25"),
+                new Transaction(7, "Camera", 899.99, "2025-01-28"),
+                new Transaction(8, "Mouse", 45.50, "2025-02-01"),
+                new Transaction(9, "Smart Watch", 299.99, "2025-02-03"),
+                new Transaction(10, "Desk Chair", 399.00, "2025-02-05")
+        );
+        List<Transaction> top3 = transactions.stream()
+                .sorted(Comparator.comparingDouble(Transaction::amount).reversed())
+                .limit(3)
+                .toList();
+        System.out.println(top3);
+        top3.forEach(System.out::println);
+    }
 }
