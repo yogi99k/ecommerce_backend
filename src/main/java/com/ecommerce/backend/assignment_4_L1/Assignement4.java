@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toList;
+
 
 public class Assignement4 {
     public static void main(String[] args) {
@@ -170,8 +172,25 @@ public class Assignement4 {
                 ));
         System.out.println(collect3);
         //12. Group employees by department and find the highest salary in each department.
+        Map<String, Optional<Employees>> collect4 = employeesList.stream()
+                .collect(Collectors.groupingBy(
+                        Employees::department,
+                        Collectors.maxBy(Comparator.comparing(Employees::salary))
+                ));
+        System.out.println(collect4);
         //13. Group employees by department and calculate average salary per department.
+        Map<String, Double> collect5 = employeesList.stream()
+                .collect(Collectors.groupingBy(
+                        Employees::department,
+                        Collectors.averagingDouble(Employees::salary)
+                ));
+        System.out.println(collect5);
         //14. Partition a list of integers into even and odd numbers (Map<Boolean, List<Integer>>).
+        List<Integer> numsList = new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7,8,9,10));
+        Map<Boolean, List<Integer>> collect6 = numsList.stream()
+                .collect(Collectors.partitioningBy(i -> i % 2 == 0));
+        System.out.println("Even Nums : "+collect6.get(true));
+        System.out.println("Odd Nums : "+collect6.get(false));
     }
 
 }
