@@ -135,7 +135,6 @@ public class Assignement4 {
         System.out.println(collect1);
         //9. Given a list of strings, group them by their length (Map<Integer, List<String>>).
         Map<Integer, List<String>> collect2 = names.stream()
-                .distinct()
                 .collect(Collectors.groupingBy(
                         String::length
                 ));
@@ -151,6 +150,28 @@ public class Assignement4 {
                         .thenComparing(Employee::name))
                 .toList();
         System.out.println(list4);
+
+        //Level 3: Grouping & Advanced Collectors
+        //11. Group employees by department and count number of employees in each department.
+        record Employees(int id, String name, double salary, String department ){}
+        List<Employees> employeesList = List.of(
+                new Employees(101,"yogi",55.5,"IT"),
+                new Employees(102,"max",65.5, "HR"),
+                new Employees(103,"kris",75.5,"IT"),
+                new Employees(104,"nik",85.5,"Security"),
+                new Employees(105,"mar",95.5,"IT"),
+                new Employees(106,"nar",95.5,"HR"),
+                new Employees(109,"mik",85.5,"Security")
+        );
+        Map<String, Long> collect3 = employeesList.stream()
+                .collect(Collectors.groupingBy(
+                        Employees::department,
+                        Collectors.counting()
+                ));
+        System.out.println(collect3);
+        //12. Group employees by department and find the highest salary in each department.
+        //13. Group employees by department and calculate average salary per department.
+        //14. Partition a list of integers into even and odd numbers (Map<Boolean, List<Integer>>).
     }
 
 }
