@@ -240,5 +240,14 @@ public class Assignement4 {
                 .max(Comparator.comparing(Employee1::salary))
                 .orElseThrow(()->new RuntimeException("No new emp found"));
         System.out.println(employee1);
+
+        Optional<Employee1> it = employees1.stream()
+                .filter(e -> e.department.equals("IT") && e.salary > 90000)
+                .findFirst();
+
+        String notFound = it.map(
+                e -> "emp belongs to IT with sal > 90000 " + e.name()+" salary : "+e.salary())
+                            .orElse("Not found");
+        System.out.println(notFound);
     }
 }
