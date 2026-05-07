@@ -235,5 +235,10 @@ public class Assignement4 {
                 .sorted(employee1Comparator)
                 .toList();
         System.out.println(list6);
+
+        Employee1 employee1 = employees1.stream()
+                .max(Comparator.comparing(Employee1::salary))
+                .orElseThrow(()->new RuntimeException("No new emp found"));
+        System.out.println(employee1);
     }
 }
