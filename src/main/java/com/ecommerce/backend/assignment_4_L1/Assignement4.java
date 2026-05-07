@@ -212,5 +212,28 @@ public class Assignement4 {
                 .toList();
         System.out.println(top3);
         top3.forEach(System.out::println);
+
+        record Employee1(int id, String name, String department, double salary, int age) {}
+        List<Employee1> employees1 = List.of(
+                new Employee1(1, "Alice", "IT", 85000, 28),
+                new Employee1(2, "Bob", "HR", 65000, 35),
+                new Employee1(3, "Charlie", "IT", 95000, 30),
+                new Employee1(4, "Diana", "Finance", 95000, 29),
+                new Employee1(5, "Eve", "IT", 72000, 25)
+        );
+        List<Employee1> list5 = employees1.stream()
+                .sorted(Comparator.comparingDouble(Employee1::salary).reversed()
+                        .thenComparing(Employee1::age)
+                        .thenComparing(Employee1::name))
+                .toList();
+        System.out.println(list5);
+
+        Comparator<Employee1> employee1Comparator = Comparator.comparing(Employee1::department)
+                .thenComparing(Comparator.comparing(Employee1::salary).reversed())
+                .thenComparing(Employee1::age);
+        List<Employee1> list6 = employees1.stream()
+                .sorted(employee1Comparator)
+                .toList();
+        System.out.println(list6);
     }
 }
