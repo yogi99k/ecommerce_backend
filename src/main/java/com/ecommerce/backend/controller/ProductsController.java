@@ -71,7 +71,9 @@ public class ProductsController {
 
     //16. Find all products that are above a certain price and have rating > 4.0. Sort them by price descending.
     @GetMapping("/assign-4-16")
-    public List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(@RequestParam double price){
-        return productsService.getProductsAboveCertainPriceAndRatingInDesc(price);
+    //remove hardcoded rating
+    public List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(@RequestParam double price,
+                                                                         @RequestParam double rating){
+        return productsService.getProductsAboveCertainPriceAndRatingInDesc(price,rating);
     }
 }

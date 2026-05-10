@@ -20,6 +20,7 @@ public interface ProductsRepository extends JpaRepository<Products, String>, Jpa
             nativeQuery = true)
     Page<Products> getPaginateOrdersWithStatusCancelled(@Param("rating") float rating, Pageable pageable);
 
-    @Query("select p from Products p where p.price > :price and p.rating > 3.0 order by p.price desc")
-    List<Products> getProductsAboveCertainPriceAndRatingInDesc(@Param("price") double price);
+    @Query("select p from Products p where p.price > :price and p.rating > :rating order by p.price desc")
+    List<Products> getProductsAboveCertainPriceAndRatingInDesc(@Param("price") double price,
+                                                               @Param("rating") double rating);
 }

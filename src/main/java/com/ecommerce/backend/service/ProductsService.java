@@ -23,5 +23,5 @@ public interface ProductsService {
 
     List<ProductsDTO> getDynamicAPI2(String category, Integer minPrice, Integer maxPrice, int page, int size);
 
-    List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(double price);
+    List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(double price,double rating);
 }

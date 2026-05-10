@@ -96,8 +96,8 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(double price) {
-        return productsRepository.getProductsAboveCertainPriceAndRatingInDesc(price)
+    public List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(double price,double rating) {
+        return productsRepository.getProductsAboveCertainPriceAndRatingInDesc(price,rating)
                 .stream()
                 .map(ProductsMapper::toDto)
                 .toList();
