@@ -3,6 +3,7 @@ package com.ecommerce.backend.controller;
 import com.ecommerce.backend.dto.ProductsDTO;
 import com.ecommerce.backend.service.ProductsService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -72,8 +73,10 @@ public class ProductsController {
     //16. Find all products that are above a certain price and have rating > 4.0. Sort them by price descending.
     @GetMapping("/assign-4-16")
     //remove hardcoded rating
+    //remove hardcoded sort direction
     public List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(@RequestParam double price,
-                                                                         @RequestParam double rating){
-        return productsService.getProductsAboveCertainPriceAndRatingInDesc(price,rating);
+                                                                         @RequestParam double rating,
+                                                                         @RequestParam String direction){
+        return productsService.getProductsAboveCertainPriceAndRatingInDesc(price,rating,direction);
     }
 }

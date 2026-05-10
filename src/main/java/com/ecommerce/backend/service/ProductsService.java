@@ -2,6 +2,7 @@ package com.ecommerce.backend.service;
 
 import com.ecommerce.backend.dto.ProductsDTO;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,5 +24,5 @@ public interface ProductsService {
 
     List<ProductsDTO> getDynamicAPI2(String category, Integer minPrice, Integer maxPrice, int page, int size);
 
-    List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(double price,double rating);
+    List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(double price, double rating, String sortDirection);
 }
