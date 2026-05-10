@@ -22,4 +22,6 @@ public interface ProductsService {
     Page<ProductsDTO> getPaginateOrdersWithStatusCancelled(int page, int size, float rating);
 
     List<ProductsDTO> getDynamicAPI2(String category, Integer minPrice, Integer maxPrice, int page, int size);
+
+    List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(double price);
 }

@@ -1,5 +1,6 @@
 package com.ecommerce.backend.repository;
 
+import com.ecommerce.backend.dto.ProductsDTO;
 import com.ecommerce.backend.entity.Products;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,4 +19,7 @@ public interface ProductsRepository extends JpaRepository<Products, String>, Jpa
             countQuery = "SELECT COUNT(*) FROM products WHERE rating = :rating",
             nativeQuery = true)
     Page<Products> getPaginateOrdersWithStatusCancelled(@Param("rating") float rating, Pageable pageable);
+
+    @Query("select p from Products p where p.price > :price and p.rating > 3.0 order by p.price desc")
+    List<Products> getProductsAboveCertainPriceAndRatingInDesc(@Param("price") double price);
 }

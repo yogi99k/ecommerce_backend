@@ -68,4 +68,10 @@ public class ProductsController {
                                             @RequestParam int size){
         return productsService.getDynamicAPI2(category,minPrice,maxPrice,page,size);
     }
+
+    //16. Find all products that are above a certain price and have rating > 4.0. Sort them by price descending.
+    @GetMapping("/assign-4-16")
+    public List<ProductsDTO> getProductsAboveCertainPriceAndRatingInDesc(@RequestParam double price){
+        return productsService.getProductsAboveCertainPriceAndRatingInDesc(price);
+    }
 }
